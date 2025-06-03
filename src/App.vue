@@ -13,8 +13,11 @@
         :title="item.title"
         :id="item.id"
         :is-open="item.isOpen"
+        :was-read="item.wasRead"
         @open-news="openNews"
         @read-news="readNews"
+        @unread="unreadNews"
+
     />
   </div>
 
@@ -32,17 +35,20 @@ export default {
         {
           title: 'Новость 1',
           id: 1,
-          isOpen: false
+          isOpen: false,
+          wasRead: false
         },
         {
           title: 'Новость 2',
           id: 2,
-          isOpen: false
+          isOpen: false,
+          wasRead: false
         },
         {
           title: 'Новость 3',
           id: 3,
-          isOpen: false
+          isOpen: false,
+          wasRead: false
         }
       ]
     }
@@ -51,8 +57,18 @@ export default {
     openNews() {
       this.openRate++
     },
-    readNews(){
+    readNews(id){
+      const news = this.news.find(news => news.id === id)
+      news.wasRead = true
       this.readRate++
+      console.log(id)
+    },
+    unreadNews(id){
+      const news = this.news.find(news => news.id === id)
+      news.wasRead = false
+      this.readRate--
+
+
     }
   },
   components: {
