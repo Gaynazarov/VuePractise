@@ -1,30 +1,28 @@
 <template>
   <div class="card">
     <h2>{{ title }}</h2>
-    <button class="btn" @click="open">
-      {{ isNewsOpen ? 'Закрыть' : 'Открыть' }}
-    </button>
-    <button class="btn danger"
-            @click="$emit('unread', id)"
-            v-if="wasRead"
-    >
-      Отметить как не прочитанно!
-    </button>
+    <app-button @action="open">{{ isNewsOpen ? 'Закрыть' : 'Открыть' }}</app-button>
+    <app-button color="danger"
+                @action="$emit('unread', id)"
+                v-if="wasRead"
+    >Отметить как не прочитанно!
+    </app-button>
     <div v-if="isNewsOpen">
-      <hr />
-      <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, rem?</p>
-      <button
-          class="btn primary"
-          @click="noteRead"
+      <hr/>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, rem?</p>
+      <app-button
+          color="primary"
+          @action="noteRead"
           v-if="!wasRead"
-      >
-        Прочесть новость
-      </button>
+      >Прочесть новость
+      </app-button>
     </div>
   </div>
 </template>
 
 <script>
+import AppButton from "./AppButton.vue";
+
 export default {
   name: 'AppNews',
   props: {
@@ -41,7 +39,7 @@ export default {
       }
       return false
     },
-    'unread':null
+    'unread': null
   },
   data() {
     return {
@@ -55,7 +53,7 @@ export default {
         this.$emit('open-news')
       }
     },
-    noteRead(id){
+    noteRead(id) {
       this.isNewsOpen = false
       this.$emit('read-news', this.id)
     },
@@ -63,6 +61,7 @@ export default {
     //   this.$emit("unread", this.id)
     //   this.isNewsOpen =false
     // }
-  }
+  },
+  components: {AppButton}
 }
 </script>

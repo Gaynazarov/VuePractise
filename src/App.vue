@@ -67,8 +67,6 @@ export default {
       const news = this.news.find(news => news.id === id)
       news.wasRead = false
       this.readRate--
-
-
     }
   },
   components: {
