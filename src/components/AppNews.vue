@@ -16,12 +16,14 @@
           v-if="!wasRead"
       >Прочесть новость
       </app-button>
+      <app-news-list ></app-news-list>
     </div>
   </div>
 </template>
 
 <script>
 import AppButton from "./AppButton.vue";
+import AppNewsList from "./AppNewsList.vue";
 
 export default {
   name: 'AppNews',
@@ -62,6 +64,6 @@ export default {
     //   this.isNewsOpen =false
     // }
   },
-  components: {AppButton}
+  components: {AppButton, AppNewsList}
 }
 </script>
