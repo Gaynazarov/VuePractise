@@ -3,7 +3,6 @@
     <slot/>
   </button>
 </template>
-
 <script>
 export default {
   emits: ['action'],
